@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 
 #predefined stopwords 
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 import sys
-import string
+from .stopwords import stopwords
+# import string
 
 
 # set of stopwords from only the english language
 # TODO: sub these for the proper word_id based on the vocab
 
-sw = stopwords.words('english')
-punctuation = list(string.punctuation)
-for p in punc:
-        sw.append(p)
-sw = set(sw)
+# sw = stopwords.words('english')
+# punctuation = list(string.punctuation)
+# for p in punc:
+        # sw.append(p)
+# sw = set(sw)
 
 if __name__ == "__main__":
     # every line should be of the form: <rating> word_id:word_count
@@ -23,7 +24,7 @@ if __name__ == "__main__":
         docid, rating, words = l.split(',', 2)
 
         words = [word for word in words.lower().split()
-                if word not in sw]
+                if word not in stopwords]
 
         for w in words:
             #if word not in sw:
