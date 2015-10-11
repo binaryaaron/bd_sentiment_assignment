@@ -12,17 +12,17 @@ def gen(f):
 if __name__ == '__main__':
     data = gen(sys.stdin)
 
-    # group all the same ratings together and construct the (rating,
+    # group all the same docids together and construct the (docid,
     # iterator) pair where iterator will return all values that were
-    # previously of the form: <rating>\t<word_id>:<count>
-    for (rating, iterator) in groupby(data, itemgetter(0)):
-        # keep track of all current counts for a given rating
+    # previously of the form: (<docid>, rating)\t<word>:<count>
+    for (docid, iterator) in groupby(data, itemgetter(0)):
+        # keep track of all current counts for a given docid
         count = {}
 
-        #iterator returns ["<rating>", "<word_id>:<count>"]
-        for [rating, pair] in iterator:
+        #iterator returns ["<docid>", "<word_id>:<count>"]
+        for [docid, pair] in iterator:
             #extract the <word_id>
-            w_id,c = pair.split(':')
+            w_id, c = pair.split(':')
 
             # update the total count for the <word_id>
             if w_id in count.keys():
@@ -30,7 +30,7 @@ if __name__ == '__main__':
             else:
                 count[w_id] = c
 
-        # for this rating print out the total count for every word in
-        # this rating
+        # for this docid print out the total count for every word in
+        # this docid
         for w_id in count.keys():
-            print '%s\t%s:%s' % (rating, w_id, count[w_id])
+            print('%s\t%s:%s' % (docid, w_id, count[w_id]))
