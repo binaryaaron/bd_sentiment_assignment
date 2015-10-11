@@ -1,4 +1,4 @@
-stopwords = {'!',
+punc = {'!',
  '"',
  '#',
  '$',
@@ -25,7 +25,13 @@ stopwords = {'!',
  ']',
  '^',
  '_',
- '`',
+ '{',
+ '|',
+ '}',
+ '~',
+ '`'}
+
+stopwords = {
  'a',
  'about',
  'above',
@@ -83,6 +89,7 @@ stopwords = {'!',
  'is',
  'it',
  'its',
+ 'it\'s',
  'itself',
  'just',
  'me',
@@ -153,7 +160,5 @@ stopwords = {'!',
  'yours',
  'yourself',
  'yourselves',
- '{',
- '|',
- '}',
- '~'}
+ 'br'
+ }

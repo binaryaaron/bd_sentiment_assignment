@@ -3,6 +3,8 @@
 from itertools import groupby
 from operator import itemgetter
 import sys
+import logging
+
 
 # generator for the input so we don't read it all in at once
 def gen(f):
@@ -12,6 +14,7 @@ def gen(f):
 if __name__ == '__main__':
     data = gen(sys.stdin)
 
+    logging.info(data)
     # group all the same docids together and construct the (docid,
     # iterator) pair where iterator will return all values that were
     # previously of the form: (<docid>, rating)\t<word>:<count>
@@ -26,9 +29,9 @@ if __name__ == '__main__':
 
             # update the total count for the <word_id>
             if w_id in count.keys():
-                count[w_id] += c
+                count[w_id] += int(c)
             else:
-                count[w_id] = c
+                count[w_id] = int(c)
 
         # for this docid print out the total count for every word in
         # this docid
