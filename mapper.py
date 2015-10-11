@@ -1,10 +1,14 @@
+#!/usr/bin/env python
+
 #predefined stopwords 
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 import sys
+
 
 # set of stopwords from only the english language
 # TODO: sub these for the proper word_id based on the vocab
-sw = stopwords.words('english')
+
+#sw = stopwords.words('english')
 
 if __name__ == "__main__":
     # every line should be of the form: <rating> word_id:word_count
@@ -20,4 +24,4 @@ if __name__ == "__main__":
         for w in words:
             [word,c] = w.split(':')
             #if word not in sw:
-            print '%s\t(%s,%s)' % (rating, word, c)
+            print "%s\t%s:%s" % (rating, word, c)
