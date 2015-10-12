@@ -3,18 +3,14 @@
 #predefined stopwords 
 # from nltk.corpus import stopwords
 import sys
-from .stopwords import stopwords
+from stopwords import stopwords
+from stopwords import punc
 # import string
 
 
-# set of stopwords from only the english language
-# TODO: sub these for the proper word_id based on the vocab
+def punct_killer(review):
+        return "".join(list(map(lambda x: x if x not in punc else ' ', review)))
 
-# sw = stopwords.words('english')
-# punctuation = list(string.punctuation)
-# for p in punc:
-        # sw.append(p)
-# sw = set(sw)
 
 if __name__ == "__main__":
     # every line should be of the form: <rating> word_id:word_count
@@ -23,6 +19,7 @@ if __name__ == "__main__":
         # get the basic fields we'll work with
         docid, rating, words = l.split(',', 2)
 
+        words = punct_killer(words)
         words = [word for word in words.lower().split()
                 if word not in stopwords]
 
