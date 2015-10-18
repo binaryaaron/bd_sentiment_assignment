@@ -25,6 +25,9 @@ get_sent = lambda x: 1 if x[1] > 5 else 0
 
 
 def plot_confusion_matrix(cm, title='Confusion matrix', cmap=plt.cm.Blues):
+    """
+    From sklearn's demo pages
+    """
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
     plt.colorbar()
@@ -169,6 +172,7 @@ print('Confusion matrix, without normalization')
 print(cm)
 plt.figure()
 plot_confusion_matrix(cm)
+plt.savefig('basic_cm.pdf')
 
 # Normalize the confusion matrix by row (i.e by the number of samples # in each class)
 cm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
@@ -177,4 +181,4 @@ print(cm_normalized)
 plt.figure()
 plot_confusion_matrix(cm_normalized, title='Normalized confusion matrix')
 
-plt.savefig('cm.pdf')
+plt.savefig('normed_cm.pdf')
